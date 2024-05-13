@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'web_admin',
         'passwords' => 'users',
     ],
 
@@ -36,10 +36,23 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'web_admin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'web_admins',
         ],
+        'player' => [
+            'driver' => 'session',
+            'provider' => 'players',
+        ],
+        'partner' => [
+            'driver' => 'session',
+            'provider' => 'partners',
+        ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
+        
     ],
 
     /*
@@ -60,15 +73,22 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'web_admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\WebAdmin::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'players' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Player::class,
+        ],
+        'partners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Partner::class,
+        ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
+        ],
     ],
 
     /*
